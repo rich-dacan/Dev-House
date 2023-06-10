@@ -1,7 +1,7 @@
 import React from "react";
 import Lottie from "react-lottie";
 import { useState } from "react";
-import animationError from "../../animations/error.json";
+import animationError from "../../../animations/error.json";
 
 function AnimationError() {
   const [animationState] = useState({

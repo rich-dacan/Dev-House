@@ -8,7 +8,7 @@ import animationDev from "../../animations/dev1.json";
 import Logo from "../../images/Logo.svg";
 import Lottie from "react-lottie";
 
-import AnimatedPage from "../../components/AnimatedPage";
+import AnimatedPage from "../../components/Animations/AnimatedPage";
 import Button from "../../components/Button";
 
 function Initial({ authenticated }) {

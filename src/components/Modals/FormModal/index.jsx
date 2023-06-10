@@ -3,7 +3,7 @@ import { useForm } from "react-hook-form";
 import { AiOutlineClose } from "react-icons/ai";
 import AnimatedModal from "../AnimatedModal";
 import Button from "../../Button";
-import InputContainer from "../../InputContainer";
+import InputContainer from "../../Generals/InputContainer";
 import { FieldModal, HeaderModal, Modal } from "./styles";
 
 function FormModal({

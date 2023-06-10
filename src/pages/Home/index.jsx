@@ -1,4 +1,6 @@
+import React, { useEffect, useState } from "react";
 import { Redirect } from "react-router-dom";
+
 import Button from "../../components/Button";
 import Header from "../../components/Generals/Header";
 import Main from "../../components/Generals/Main";
@@ -11,8 +13,8 @@ import {
   FaMoon,
   FaUserCircle,
 } from "react-icons/fa";
-import axios from "axios";
-import { useEffect, useState } from "react";
+
+import { Footer } from "../../components/Generals/Footer";
 import { PageHome } from "./styles";
 import ModalConfirmation from "../../components/Modals/ModalConfirmation";
 import FormModal from "../../components/Modals/FormModal";
@@ -26,10 +28,11 @@ import {
   schemaUpdateProfile,
 } from "./validations";
 
+import "react-toastify/dist/ReactToastify.css";
 import { toast } from "react-toastify";
 import { MdLogout } from "react-icons/md";
-import "react-toastify/dist/ReactToastify.css";
-import AnimatedPage from "../../components/AnimatedPage";
+
+import AnimatedPage from "../../components/Animations/AnimatedPage";
 import ContentTechnologies from "../../components/ContentTechnologies";
 import ContentWorks from "../../components/ContentWorks";
 import {
@@ -45,11 +48,11 @@ import {
   fieldsUpdateWork,
 } from "./fields";
 
-import ToastTechnologie from "../../components/ToastTechnologie";
-import AnimationComputer from "../../components/AnimationComputer";
-import AnimationError from "../../components/AnimationError";
-import { Footer } from "../../components/Generals/Footer";
+import ToastTechnology from "../../components/ToastTechnology";
+import AnimationComputer from "../../components/Animations/AnimationComputer";
+import AnimationError from "../../components/Animations/AnimationError";
 import LoadingSpinner from "../../components/Loadings/LoadingSpinner";
+import axios from "axios";
 
 function Home({
   theme,
@@ -78,8 +81,8 @@ function Home({
   const [schema, setSchema] = useState(schemaRegisterTech);
   const [openedModalConfirm, setOpenedModalConfirm] = useState(false);
   const [openedModal, setOpenedModal] = useState(false);
-  const [mesageModal, setMesage] = useState();
-  const [mesageConfirm, setMesageConfirm] = useState("");
+  const [messageModal, setMessage] = useState();
+  const [messageConfirm, setMessageConfirm] = useState("");
   const [functionOnConfirm, setFunctionOnConfirm] = useState({ f: {} });
   const [onSubmitFunction, setOnSubmitFunction] = useState({ f: {} });
 
@@ -109,7 +112,7 @@ function Home({
       requisitionDelete(
         "works",
         work.id,
-        "Projeto deletado com successo!",
+        "Projeto deletado com sucesso!",
         "Ocorreu algum erro, tente novamente"
       );
     }
@@ -203,7 +206,7 @@ function Home({
       buttonsUpdateWork({
         f: () => {
           setOpenedModalConfirm(true);
-          setMesageConfirm("Deseja mesmo excluir esse projeto?");
+          setMessageConfirm("Deseja mesmo excluir esse projeto?");
           setFunctionOnConfirm({ f: deleteFunction });
         },
       })
@@ -355,24 +358,28 @@ function Home({
   function openModalUpdate() {
     setOpenedForm(true);
     setTittleForm("Tecnologia detalhes");
+
     const fields = fieldsUpdateTech(tech);
     const index = fields[1].options.findIndex(
       item => item.text === tech.status
     );
     fields[1].options[index].value = "";
+
     setFieldsInputs(fields);
 
     const buttons = buttonsUpdateTech({
       f: () => {
         setOpenedModalConfirm(true);
-        setMesageConfirm("Deseja mesmo excluir essa tecnologia?");
+        setMessageConfirm("Deseja mesmo excluir essa tecnologia?");
         setFunctionOnConfirm({ f: deleteFunction });
       },
     });
-    setButtonForm(buttons);
+
     setOnSubmitFunction({
       f: onSubmitUpdateTechFunction,
     });
+
+    setButtonForm(buttons);
     setSchema(schemaUpdateTech);
   }
 
@@ -449,7 +456,7 @@ function Home({
               padding="0.2rem 0.5rem"
               onClick={() => {
                 setOpenedModalConfirm(true);
-                setMesageConfirm("Deseja mesmo sair?");
+                setMessageConfirm("Deseja mesmo sair?");
                 setFunctionOnConfirm({ f: logout });
               }}
             >
@@ -491,7 +498,7 @@ function Home({
               />
             ) : (
               <ContentWorks
-                setMesage={setMesage}
+                setMessage={setMessage}
                 setOpenedModal={setOpenedModal}
                 openModalAdd={openModalWorkAdd}
                 works={works}
@@ -501,7 +508,7 @@ function Home({
           </Main>
         </main>
 
-        <ToastTechnologie />
+        <ToastTechnology />
 
         {openedForm ? (
           <FormModal
@@ -518,7 +525,7 @@ function Home({
 
         {openedModalConfirm ? (
           <ModalConfirmation
-            mesage={mesageConfirm}
+            mesage={messageConfirm}
             setOpened={setOpenedModalConfirm}
             opened={openedModalConfirm}
             buttons={[
@@ -538,7 +545,7 @@ function Home({
 
         {openedModal ? (
           <ModalC
-            mesage={mesageModal}
+            mesage={messageModal}
             opened={openedModal}
             setOpenedModal={setOpenedModal}
           />
