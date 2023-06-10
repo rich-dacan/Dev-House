@@ -23,6 +23,7 @@ import {
   schemaUpdateTech,
   schemaRegisterWork,
   schemaUpdateWork,
+  schemaUpdateProfile,
 } from "./validations";
 
 import { toast } from "react-toastify";
@@ -34,6 +35,7 @@ import ContentWorks from "../../components/ContentWorks";
 import {
   buttonsRegisterTech,
   buttonsRegisterWork,
+  buttonsUpdateProfile,
   buttonsUpdateTech,
   buttonsUpdateWork,
   fieldsRegisterTech,
@@ -267,6 +269,42 @@ function Home({
     return result;
   }
 
+  async function requisitionProfile(
+    data,
+    messageSuccess,
+    messageError,
+    endpoint
+  ) {
+    const result = await axios
+      .put(`https://kenziehub.herokuapp.com/${endpoint}`, data, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      })
+      .then(res => {
+        loadUserInfo();
+        showSuccess(messageSuccess);
+
+        setOpenedForm(false);
+
+        return res.data;
+      })
+      .catch(err => {
+        showError(messageError);
+      });
+
+    return result;
+  }
+
+  const onSubmitUpdateProfile = data => {
+    requisitionProfile(
+      data,
+      "Perfil alterado com sucesso!",
+      "Ocorreu algum erro, tente novamente",
+      "profile"
+    );
+  };
+
   const onSubmitUpdateTechFunction = data => {
     requisition(
       data,
@@ -277,17 +315,6 @@ function Home({
       "put"
     );
   };
-
-  function openModalAdd() {
-    setOpenedForm(true);
-    setTittleForm("Cadastrar tecnologia");
-    setFieldsInputs(fieldsRegisterTech);
-    setButtonForm(buttonsRegisterTech);
-    setOnSubmitFunction({
-      f: onSubmitRegisterTechFunction,
-    });
-    setSchema(schemaRegisterTech);
-  }
 
   async function onSubmitRegisterWorkFunction(data) {
     const result = await requisition(
@@ -301,6 +328,17 @@ function Home({
     if (result) {
       setWorks([...works, result]);
     }
+  }
+
+  function openModalAdd() {
+    setOpenedForm(true);
+    setTittleForm("Cadastrar tecnologia");
+    setFieldsInputs(fieldsRegisterTech);
+    setButtonForm(buttonsRegisterTech);
+    setOnSubmitFunction({
+      f: onSubmitRegisterTechFunction,
+    });
+    setSchema(schemaRegisterTech);
   }
 
   function openModalWorkAdd() {
@@ -340,30 +378,17 @@ function Home({
 
   function openModalUpdateProfile() {
     setOpenedForm(true);
+
     setTittleForm("Atualizar perfil");
 
-    const fields = fieldsUpdateProfile(techs);
+    setFieldsInputs(fieldsUpdateProfile(user));
 
-    const index = fields[1].options.findIndex(
-      item => item.text === tech.status
-    );
+    setButtonForm(buttonsUpdateProfile);
 
-    fields[1].options[index].value = "";
-    setFieldsInputs(fields);
-
-    const buttons = buttonsUpdateTech({
-      f: () => {
-        setOpenedModalConfirm(true);
-        setMesageConfirm("Deseja mesmo excluir essa tecnologia?");
-        setFunctionOnConfirm({ f: deleteFunction });
-      },
-    });
-
-    setButtonForm(buttons);
     setOnSubmitFunction({
-      f: onSubmitUpdateTechFunction,
+      f: onSubmitUpdateProfile,
     });
-    setSchema(schemaUpdateTech);
+    setSchema(schemaUpdateProfile);
   }
 
   if (techs.length < 1) {
@@ -443,7 +468,12 @@ function Home({
                 alt={user.name}
               />
             ) : (
-              <FaUserCircle onClick={openModalUpdateProfile} size={77} />
+              <FaUserCircle
+                onClick={openModalUpdateProfile}
+                style={{ cursor: "pointer" }}
+                size={77}
+                title="Edit profile"
+              />
             )}
           </div>
           <h2>Olá, {user.name}! </h2>

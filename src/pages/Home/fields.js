@@ -89,6 +89,14 @@ export const buttonsRegisterTech = [
   },
 ];
 
+export const buttonsUpdateProfile = [
+  {
+    title: "Atualizar perfil",
+    bgColor: "var(--color-primary)",
+    type: "submit",
+  },
+];
+
 export const fieldsUpdateWork = work => [
   {
     field: "input",
@@ -110,30 +118,30 @@ export const fieldsUpdateWork = work => [
   },
 ];
 
-export const fieldsUpdateProfile = profile => [
+export const fieldsUpdateProfile = user => [
   {
     field: "input",
     label: "Nome",
     name: "name",
-    defaultValue: profile.name,
+    defaultValue: user.name,
   },
   {
     field: "input",
     label: "Email",
     name: "email",
-    defaultValue: profile.email,
+    defaultValue: user.email,
   },
   {
     field: "input",
-    label: "Contact",
+    label: "Contato",
     name: "contact",
-    defaultValue: profile.contact,
+    defaultValue: user.contact,
   },
   {
     field: "input",
     label: "Bio",
     name: "bio",
-    defaultValue: profile.bio,
+    defaultValue: user.bio,
   },
 ];
 
