@@ -1,9 +1,7 @@
 import { HeaderHome } from "./styles";
 
-function Header({children}) {
-    return (   
-        <HeaderHome>{children}</HeaderHome>
-    )
+function Header({ children }) {
+  return <HeaderHome>{children}</HeaderHome>;
 }
 
-export default Header
+export default Header;

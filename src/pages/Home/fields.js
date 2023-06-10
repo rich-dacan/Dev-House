@@ -1,110 +1,165 @@
-export const buttonsUpdateTech = (onClick) => [{
-    title: 'Salvar alterações',
+export const buttonsUpdateTech = onClick => [
+  {
+    title: "Salvar alterações",
     bgColor: "var(--color-primary)",
-    type: 'submit'
-  }, {
-    title: 'Excluir',
-    type: 'button',
-    onClick: onClick.f
-}]
+    type: "submit",
+  },
+  {
+    title: "Excluir",
+    type: "button",
+    onClick: onClick.f,
+  },
+];
 
-export const buttonsUpdateWork = (onClick) => [{
-    title: 'Salvar alterações',
+export const buttonsUpdateWork = onClick => [
+  {
+    title: "Salvar alterações",
     bgColor: "var(--color-primary)",
-    type: 'submit'
-  }, {
-    title: 'Excluir',
-    type: 'button',
-    onClick: onClick.f
-  }]
+    type: "submit",
+  },
+  {
+    title: "Excluir",
+    type: "button",
+    onClick: onClick.f,
+  },
+];
 
-export const fieldsRegisterWork = [{
-    field: 'input',
-    label: 'Título*',
-    name: 'title',
-  },{
-    field: 'input',
-    label: 'Descrição*',
-    name: 'description',
-  },{
-    field: 'input',
-    label: 'Link do projeto*',
-    name: 'deploy_url',
-  }]
+export const fieldsRegisterWork = [
+  {
+    field: "input",
+    label: "Título*",
+    name: "title",
+  },
+  {
+    field: "input",
+    label: "Descrição*",
+    name: "description",
+  },
+  {
+    field: "input",
+    label: "Link do projeto*",
+    name: "deploy_url",
+  },
+];
 
 export const fieldsRegisterTech = [
-    {
-    field: 'input',
-    label: 'Nome*',
-    name: 'title',
-  },{
-    field: 'select',
-    name: 'status',
-    label: 'Selecionar status',
-    options: [{
-      value: '',
-      text: 'Escolha um status'
-    },{
-      value: 'Iniciante',
-      text: 'Iniciante'
-    }, {
-      value: 'Intermediário',
-      text: 'Intermediário'
-     
-    }, {
-      value: 'Avançado',
-      text: 'Avançado'
-      
-    }] }]
+  {
+    field: "input",
+    label: "Nome*",
+    name: "title",
+  },
+  {
+    field: "select",
+    name: "status",
+    label: "Selecionar status",
+    options: [
+      {
+        value: "",
+        text: "Escolha um status",
+      },
+      {
+        value: "Iniciante",
+        text: "Iniciante",
+      },
+      {
+        value: "Intermediário",
+        text: "Intermediário",
+      },
+      {
+        value: "Avançado",
+        text: "Avançado",
+      },
+    ],
+  },
+];
 
-    export const buttonsRegisterWork = [{
-        title: 'Cadastrar Projeto',
-        bgColor: "var(--color-primary)",
-        type: 'submit'
-      }]
-      
-
-export const buttonsRegisterTech = [{
-    title: 'Cadastrar tecnologia',
+export const buttonsRegisterWork = [
+  {
+    title: "Cadastrar Projeto",
     bgColor: "var(--color-primary)",
-    type: 'submit'
-  }]
+    type: "submit",
+  },
+];
 
-export const fieldsUpdateWork = (work) => [{
-    field: 'input',
-    label: 'Título',
-    name: 'title',
-    defaultValue: work.title 
-  },{
-    field: 'input',
-    label: 'Descrição',
-    name: 'description',
-    defaultValue: work.description 
-  },{
-    field: 'input',
-    label: 'Link do projeto',
-    name: 'deploy_url',
-    defaultValue: work.deploy_url 
-  }]
+export const buttonsRegisterTech = [
+  {
+    title: "Cadastrar tecnologia",
+    bgColor: "var(--color-primary)",
+    type: "submit",
+  },
+];
 
-export const fieldsUpdateTech = (tech) => [{
-    field: 'input',
-    label: 'Nome',
-    value: tech.title 
-  },{
-    field: 'select',
-    name: 'status',
-    label: 'Selecionar status',
-    options: [{
-      value: 'Iniciante',
-      text: 'Iniciante'
-    }, {
-      value: 'Intermediário',
-      text: 'Intermediário'
-     
-    }, {
-      value: 'Avançado',
-      text: 'Avançado'
-      
-    }]
-  }]
+export const fieldsUpdateWork = work => [
+  {
+    field: "input",
+    label: "Título",
+    name: "title",
+    defaultValue: work.title,
+  },
+  {
+    field: "input",
+    label: "Descrição",
+    name: "description",
+    defaultValue: work.description,
+  },
+  {
+    field: "input",
+    label: "Link do projeto",
+    name: "deploy_url",
+    defaultValue: work.deploy_url,
+  },
+];
+
+export const fieldsUpdateProfile = profile => [
+  {
+    field: "input",
+    label: "Nome",
+    name: "name",
+    defaultValue: profile.name,
+  },
+  {
+    field: "input",
+    label: "Email",
+    name: "email",
+    defaultValue: profile.email,
+  },
+  {
+    field: "input",
+    label: "Contact",
+    name: "contact",
+    defaultValue: profile.contact,
+  },
+  {
+    field: "input",
+    label: "Bio",
+    name: "bio",
+    defaultValue: profile.bio,
+  },
+];
+
+export const fieldsUpdateTech = tech => [
+  {
+    field: "input",
+    label: "Nome",
+    value: tech.title,
+  },
+  {
+    field: "select",
+    name: "status",
+    label: "Selecionar status",
+    options: [
+      {
+        value: "Iniciante",
+        text: "Iniciante",
+      },
+      {
+        value: "Intermediário",
+        text: "Intermediário",
+      },
+      {
+        value: "Avançado",
+        text: "Avançado",
+      },
+    ],
+  },
+];

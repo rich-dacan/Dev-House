@@ -3,8 +3,14 @@ import Button from "../../components/Button";
 import Header from "../../components/Header";
 import Main from "../../components/Main";
 import NavBar from "../../components/Navbar";
-import Logo from "../../images/Logo.svg";
-import { FaLaptopCode, FaFileCode } from "react-icons/fa";
+// import Logo from "../../images/Logo.svg";
+import {
+  FaLaptopCode,
+  FaFileCode,
+  FaSun,
+  FaMoon,
+  FaUserCircle,
+} from "react-icons/fa";
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { PageHome } from "./styles";
@@ -17,6 +23,7 @@ import {
 } from "./validations";
 import { toast } from "react-toastify";
 import { MdLogout } from "react-icons/md";
+import { FaCircleUser } from "react-icons/fa";
 import "react-toastify/dist/ReactToastify.css";
 import AnimatedPage from "../../components/AnimatedPage";
 import ModalConfirmation from "../../components/ModalConfirmation";
@@ -30,6 +37,7 @@ import {
   buttonsUpdateWork,
   fieldsRegisterTech,
   fieldsRegisterWork,
+  fieldsUpdateProfile,
   fieldsUpdateTech,
   fieldsUpdateWork,
 } from "./fields";
@@ -326,22 +334,60 @@ function Home({
     setSchema(schemaUpdateTech);
   }
 
+  function openModalUpdateProfile() {
+    setOpenedForm(true);
+    setTittleForm("Atualizar perfil");
+
+    const fields = fieldsUpdateProfile(techs);
+
+    const index = fields[1].options.findIndex(
+      item => item.text === tech.status
+    );
+
+    fields[1].options[index].value = "";
+    setFieldsInputs(fields);
+
+    const buttons = buttonsUpdateTech({
+      f: () => {
+        setOpenedModalConfirm(true);
+        setMesageConfirm("Deseja mesmo excluir essa tecnologia?");
+        setFunctionOnConfirm({ f: deleteFunction });
+      },
+    });
+
+    setButtonForm(buttons);
+    setOnSubmitFunction({
+      f: onSubmitUpdateTechFunction,
+    });
+    setSchema(schemaUpdateTech);
+  }
+
   return (
     <AnimatedPage>
       <PageHome>
         <NavBar theme={theme}>
-          {/* <img
-            onClick={() => setThemeIsDefault(!themeIsDefault)}
-            src={Logo}
-            alt="logo"
-          /> */}
-          <p
+          <h1
             className="logo__navbar"
             title="Click to change theme"
             onClick={() => setThemeIsDefault(!themeIsDefault)}
           >
             DevHouse
-          </p>
+          </h1>
+          {!themeIsDefault ? (
+            <FaSun
+              size={28}
+              color="#F1FA8C"
+              style={{ cursor: "pointer" }}
+              onClick={() => setThemeIsDefault(true)}
+            />
+          ) : (
+            <FaMoon
+              size={22}
+              color="#F1FA8C"
+              style={{ cursor: "pointer" }}
+              onClick={() => setThemeIsDefault(false)}
+            />
+          )}
           <div>
             <Button
               fontSize="1.3rem"
@@ -372,10 +418,25 @@ function Home({
             </Button>
           </div>
         </NavBar>
+
         <Header>
           {" "}
-          <h1>Olá, {user.name} </h1> <p>{user.course_module}</p>{" "}
+          <div>
+            {user.avatar_url !== null ? (
+              <img
+                onClick={() => setThemeIsDefault(!themeIsDefault)}
+                src={user.avatar_url}
+                alt={user.name}
+              />
+            ) : (
+              <FaUserCircle onClick={openModalUpdateProfile} size={77} />
+            )}
+          </div>
+          <h2>Olá, {user.name}! </h2>
+          <p>{user.course_module}</p>
+          <p>{user.bio}</p>{" "}
         </Header>
+
         <main>
           <Main>
             {onTechnologies ? (
@@ -395,6 +456,7 @@ function Home({
             )}
           </Main>
         </main>
+
         <ToastTechnologie />
 
         {openedForm ? (
@@ -429,6 +491,7 @@ function Home({
             ]}
           />
         ) : null}
+
         {openedModal ? (
           <ModalC
             mesage={mesageModal}
