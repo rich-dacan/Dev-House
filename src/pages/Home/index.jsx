@@ -44,6 +44,7 @@ import {
 import ToastTechnologie from "../../components/ToastTechnologie";
 import AnimationComputer from "../../components/AnimationComputer";
 import AnimationError from "../../components/AnimationError";
+import { Footer } from "../../components/Footer";
 
 function Home({
   theme,
@@ -500,6 +501,8 @@ function Home({
           />
         ) : null}
       </PageHome>
+
+      <Footer theme={theme} />
     </AnimatedPage>
   );
 }
