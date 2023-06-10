@@ -22,7 +22,7 @@ export const PageHome = styled.div`
 
   @media (max-width: 600px) {
     main {
-      padding: 1rem 10vw;
+      padding: 1rem 3vw;
     }
   }
 `;
