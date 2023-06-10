@@ -1,8 +1,8 @@
 import { Redirect } from "react-router-dom";
 import Button from "../../components/Button";
-import Header from "../../components/Header";
-import Main from "../../components/Main";
-import NavBar from "../../components/Navbar";
+import Header from "../../components/Generals/Header";
+import Main from "../../components/Generals/Main";
+import NavBar from "../../components/Generals/Navbar";
 // import Logo from "../../images/Logo.svg";
 import {
   FaLaptopCode,
@@ -14,22 +14,23 @@ import {
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { PageHome } from "./styles";
-import FormModal from "../../components/FormModal";
+import ModalConfirmation from "../../components/Modals/ModalConfirmation";
+import FormModal from "../../components/Modals/FormModal";
+import ModalC from "../../components/Modals/Modal";
+
 import {
   schemaRegisterTech,
   schemaUpdateTech,
   schemaRegisterWork,
   schemaUpdateWork,
 } from "./validations";
+
 import { toast } from "react-toastify";
 import { MdLogout } from "react-icons/md";
-import { FaCircleUser } from "react-icons/fa";
 import "react-toastify/dist/ReactToastify.css";
 import AnimatedPage from "../../components/AnimatedPage";
-import ModalConfirmation from "../../components/ModalConfirmation";
 import ContentTechnologies from "../../components/ContentTechnologies";
 import ContentWorks from "../../components/ContentWorks";
-import ModalC from "../../components/Modal";
 import {
   buttonsRegisterTech,
   buttonsRegisterWork,
@@ -41,10 +42,12 @@ import {
   fieldsUpdateTech,
   fieldsUpdateWork,
 } from "./fields";
+
 import ToastTechnologie from "../../components/ToastTechnologie";
 import AnimationComputer from "../../components/AnimationComputer";
 import AnimationError from "../../components/AnimationError";
-import { Footer } from "../../components/Footer";
+import { Footer } from "../../components/Generals/Footer";
+import LoadingSpinner from "../../components/Loadings/LoadingSpinner";
 
 function Home({
   theme,
@@ -60,19 +63,19 @@ function Home({
   const [idUser] = useState(
     JSON.parse(localStorage.getItem("@KenzieHub:idUser")) || ""
   );
-  const [techs, setTechs] = useState([]);
   const [user, setUser] = useState({});
+  const [tech, setTech] = useState();
+  const [techs, setTechs] = useState([]);
+  const [onTechnologies, setOnTechnologies] = useState(true);
+  const [work, setWork] = useState();
+  const [works, setWorks] = useState([]);
   const [tittleForm, setTittleForm] = useState("");
   const [fieldsInputs, setFieldsInputs] = useState([]);
   const [openedForm, setOpenedForm] = useState(false);
   const [buttonForm, setButtonForm] = useState([]);
   const [schema, setSchema] = useState(schemaRegisterTech);
-  const [tech, setTech] = useState();
   const [openedModalConfirm, setOpenedModalConfirm] = useState(false);
   const [openedModal, setOpenedModal] = useState(false);
-  const [onTechnologies, setOnTechnologies] = useState(true);
-  const [works, setWorks] = useState([]);
-  const [work, setWork] = useState();
   const [mesageModal, setMesage] = useState();
   const [mesageConfirm, setMesageConfirm] = useState("");
   const [functionOnConfirm, setFunctionOnConfirm] = useState({ f: {} });
@@ -361,6 +364,16 @@ function Home({
       f: onSubmitUpdateTechFunction,
     });
     setSchema(schemaUpdateTech);
+  }
+
+  if (techs.length < 1) {
+    return (
+      <LoadingSpinner
+        width={"200px"}
+        height={"200px"}
+        borderColor="var(--color-primary)"
+      />
+    );
   }
 
   return (

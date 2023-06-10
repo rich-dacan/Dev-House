@@ -7,7 +7,7 @@ export const PageHome = styled.div`
   .logo__navbar {
     font-size: 1.5rem;
     font-weight: 700;
-    color: #fff;
+    color: var(--color-primary);
     cursor: pointer;
     transition: all ease-in-out 0.25s;
 

@@ -1,6 +1,6 @@
-import { FaPlus, FaEdit } from "react-icons/fa";
+import { FaPlus } from "react-icons/fa";
 import Button from "../../components/Button";
-import CardTech from "../CardTech";
+import CardTech from "../Cards/CardTech";
 
 function ContentTechnologies({ openModalAdd, techs, setTech }) {
   return (

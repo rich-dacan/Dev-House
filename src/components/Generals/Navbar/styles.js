@@ -6,10 +6,11 @@ export const NavHome = styled.div`
   max-width: 100%;
   justify-content: space-between;
   align-items: center;
-  border-bottom: 1px solid ${props => props.theme.grey2};
+  border-bottom: 1px solid ${props => props.theme.colorPrimary};
   position: fixed;
   padding: 1rem 15vw;
   background-color: ${props => props.theme.grey4};
+  box-shadow: 5px 5px 30px 5px ${props => props.theme.grey2};
 
   > div {
     display: flex;

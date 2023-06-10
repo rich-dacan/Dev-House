@@ -7,7 +7,7 @@ export const HeaderHome = styled.header`
   align-items: center;
   background-color: ${props => props.theme.background};
   gap: 1.5rem;
-  border-bottom: 1px solid ${props => props.theme.grey2};
+  border-bottom: 1px solid ${props => props.theme.colorPrimary};
   margin-top: 4rem;
   padding: 2rem 15vw;
 

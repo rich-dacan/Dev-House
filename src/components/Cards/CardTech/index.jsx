@@ -1,12 +1,11 @@
-import { FaEdit } from "react-icons/fa";
-import { GiTechnoHeart } from "react-icons/gi";
+import { FaCode, FaEdit } from "react-icons/fa";
 import { ImagePrincipal, Tech } from "./styles";
 
 function CardTech({ tech, setTech }) {
   return (
     <Tech>
       <ImagePrincipal>
-        <GiTechnoHeart />
+        <FaCode size={32} />
       </ImagePrincipal>
       <div>
         <h3>{tech.title}</h3>
