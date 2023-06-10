@@ -11,6 +11,7 @@ function App() {
       <ThemeProvider theme={themeIsDefault ? defaultTheme : pinkTheme}>
         <GlobalStyle />
         <Routes
+          theme={defaultTheme}
           themeIsDefault={themeIsDefault}
           setThemeIsDefault={setThemeIsDefault}
         />

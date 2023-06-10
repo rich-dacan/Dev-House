@@ -7,7 +7,7 @@ import Initial from "../pages/Initial";
 import Login from "../pages/Login";
 import Register from "../pages/Register";
 
-function Routes({ themeIsDefault, setThemeIsDefault }) {
+function Routes({ theme, themeIsDefault, setThemeIsDefault }) {
   const [authenticated, setAuthenticated] = useState(false);
 
   useEffect(() => {
@@ -25,6 +25,7 @@ function Routes({ themeIsDefault, setThemeIsDefault }) {
       </Route>
       <Route exact path="/home">
         <Home
+          theme={theme}
           themeIsDefault={themeIsDefault}
           setThemeIsDefault={setThemeIsDefault}
           authenticated={authenticated}

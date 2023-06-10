@@ -15,7 +15,7 @@ export default createGlobalStyle`
     }
 
     :root {
-        --color-primary:#FF577F;
+        --color-primary:#9E6F21;
         --color-primary-focus: #FF427F;
         --color-primary-negative: #59323F;
         --grey-1: #868E96;
@@ -27,8 +27,8 @@ export default createGlobalStyle`
     }
 
     body {
-        background-color: ${(props) => props.theme.background};
-        color: ${(props) => props.theme.grey0};
+        background-color: ${props => props.theme.background};
+        color: ${props => props.theme.grey0};
         font-size: 1rem;
         font-family: 'Inter', sans-serif;
         min-height: 100vh;
@@ -36,15 +36,32 @@ export default createGlobalStyle`
         text-align: center;
     }
 
+    ::-webkit-scrollbar {
+    width: 8px;
+    }
+
+    ::-webkit-scrollbar-track {
+    background: #282828;
+    }
+
+    ::-webkit-scrollbar-thumb {
+    background: #9E6F21;
+    border-radius: 20px;
+    }
+
+    ::-webkit-scrollbar-thumb:hover {
+    background: #555;
+    }
+
     span {
-        color: ${(props) => props.theme.grey1};
+        color: ${props => props.theme.grey1};
     }
 
     h1, h3 {
         font-weight: 700;
     }
     p {
-        color: ${(props) => props.theme.grey1};
+        color: ${props => props.theme.grey1};
         font-size: 0.8rem;
     }
 
@@ -74,4 +91,6 @@ export default createGlobalStyle`
             font-size: 0.9rem;
         }
     }
+
+
 `;

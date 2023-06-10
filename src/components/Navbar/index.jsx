@@ -1,10 +1,7 @@
-import { NavHome } from "./styles"
+import { NavHome } from "./styles";
 
-
-function NavBar({children}) {
-    return (
-        <NavHome>{children}</NavHome>
-    )
+function NavBar({ theme, children }) {
+  return <NavHome theme={theme}>{children}</NavHome>;
 }
 
-export default NavBar
+export default NavBar;

@@ -38,6 +38,7 @@ import AnimationComputer from "../../components/AnimationComputer";
 import AnimationError from "../../components/AnimationError";
 
 function Home({
+  theme,
   themeIsDefault,
   setThemeIsDefault,
   authenticated,
@@ -328,13 +329,36 @@ function Home({
   return (
     <AnimatedPage>
       <PageHome>
-        <NavBar>
-          <img
+        <NavBar theme={theme}>
+          {/* <img
             onClick={() => setThemeIsDefault(!themeIsDefault)}
             src={Logo}
             alt="logo"
-          />
+          /> */}
+          <p
+            className="logo__navbar"
+            title="Click to change theme"
+            onClick={() => setThemeIsDefault(!themeIsDefault)}
+          >
+            DevHouse
+          </p>
           <div>
+            <Button
+              fontSize="1.3rem"
+              padding="0.2rem 0.5rem"
+              onClick={() => setOnTechnologies(true)}
+              bgColor={onTechnologies ? "var(--color-primary)" : null}
+            >
+              <FaLaptopCode title="Your Stack" />
+            </Button>
+            <Button
+              fontSize="1.3rem"
+              padding="0.2rem 0.5rem"
+              onClick={() => setOnTechnologies(false)}
+              bgColor={!onTechnologies ? "var(--color-primary)" : null}
+            >
+              <FaFileCode title="Your Projects" />
+            </Button>
             <Button
               fontSize="1.3rem"
               padding="0.2rem 0.5rem"
@@ -344,23 +368,7 @@ function Home({
                 setFunctionOnConfirm({ f: logout });
               }}
             >
-              <MdLogout />
-            </Button>
-            <Button
-              fontSize="1.3rem"
-              padding="0.2rem 0.5rem"
-              onClick={() => setOnTechnologies(true)}
-              bgColor={onTechnologies ? "var(--color-primary)" : null}
-            >
-              <FaLaptopCode />
-            </Button>
-            <Button
-              fontSize="1.3rem"
-              padding="0.2rem 0.5rem"
-              onClick={() => setOnTechnologies(false)}
-              bgColor={!onTechnologies ? "var(--color-primary)" : null}
-            >
-              <FaFileCode />
+              <MdLogout title="Logout" />
             </Button>
           </div>
         </NavBar>
