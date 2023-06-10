@@ -7,34 +7,42 @@ import Initial from "../pages/Initial";
 import Login from "../pages/Login";
 import Register from "../pages/Register";
 
-function Routes({themeIsDefault,setThemeIsDefault}) {
-
-  const [authenticated, setAuthenticated] = useState(false)
+function Routes({ themeIsDefault, setThemeIsDefault }) {
+  const [authenticated, setAuthenticated] = useState(false);
 
   useEffect(() => {
+    const token = JSON.parse(localStorage.getItem("@KenzieHub:token"));
 
-    const token = JSON.parse(localStorage.getItem("@KenzieHub:token"))
-
-    if(token) {
-      setAuthenticated(true)
+    if (token) {
+      setAuthenticated(true);
     }
+  }, [authenticated]);
 
-  }, [authenticated])
   return (
     <Switch>
       <Route exact path="/">
-        <Initial authenticated={authenticated}/>
+        <Initial authenticated={authenticated} />
       </Route>
       <Route exact path="/home">
-        <Home themeIsDefault={themeIsDefault} setThemeIsDefault={setThemeIsDefault} authenticated={authenticated} setAuthenticated={setAuthenticated}/>
+        <Home
+          themeIsDefault={themeIsDefault}
+          setThemeIsDefault={setThemeIsDefault}
+          authenticated={authenticated}
+          setAuthenticated={setAuthenticated}
+        />
       </Route>
       <Route exact path="/register">
-        <Register authenticated={authenticated} setAuthenticated={setAuthenticated}/>
+        <Register
+          authenticated={authenticated}
+          setAuthenticated={setAuthenticated}
+        />
       </Route>
       <Route exact path="/login">
-        <Login authenticated={authenticated} setAuthenticated={setAuthenticated} />
+        <Login
+          authenticated={authenticated}
+          setAuthenticated={setAuthenticated}
+        />
       </Route>
-
     </Switch>
   );
 }
